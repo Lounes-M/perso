@@ -1,0 +1,86 @@
+import time
+import os
+import random
+
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+def animate_text(text, delay=0.05):
+    for char in text:
+        print(char, end='', flush=True)
+        time.sleep(delay)
+    print()
+
+def generate_stars(length):
+    return ''.join(random.choice(['*', ' ', '.', '-']) for _ in range(length))
+
+def main():
+    clear_screen()
+    animate_text("=== Bienvenuuuuuuuuuuuuuue ===", 0.03)
+    time.sleep(0.5)
+    
+    nom = input("\nComment tu t'appelles ?")
+    if nom.lower() == "kamelia":
+        animate_text("Haha, je savais que c'etait Kamelia ! T’es trop prévisible.", 0.04)
+    else:
+        animate_text(f"Oh, {nom} ? Joli nom, mais je m’attendais à Kamelia quand même !", 0.04)
+    time.sleep(1)
+    clear_screen()
+    
+    message1 = f"Enchanté, {nom} !"
+    message2 = "Ça fait plaisir de rencontrer une Kabyle aussi cool !"
+    message3 = "Tiens, une petite surprise kabyle rien que pour toi..."
+    
+    deco = generate_stars(30)
+    print(deco)
+    animate_text(message1, 0.04)
+    time.sleep(0.3)
+    animate_text(message2, 0.04)
+    time.sleep(0.3)
+    animate_text(message3, 0.04)
+    print(deco)
+    
+    print("\nConstruction d’un cœur kabyle spécial :")
+    heart = [
+        "   **   **   ",
+        " *    *    * ",
+        "*           *",  
+        " *        *  ",
+        "  *      *   ",
+        "   *    *    ",
+        "    *  *     ",
+        "     **      "
+    ]
+    for line in heart:
+        animate_text(line, 0.02)
+        time.sleep(0.1)
+    
+    while True:
+        reponse = input(f"\nAlors {nom}, tu veux revoir ce chef-d’œuvre ? (oui/non) : ")
+        if reponse.lower() == "oui":
+            clear_screen()
+            deco = generate_stars(30)
+            print(deco)
+            animate_text(message1, 0.04)
+            animate_text(message2, 0.04)
+            animate_text(message3, 0.04)
+            print(deco)
+            for line in heart:
+                animate_text(line, 0.02)
+                time.sleep(0.1)
+        elif reponse.lower() == "non":
+            clear_screen()
+            animate_text(f"À la prochaine, {nom} ! N’hésite pas à me dire si t’as aime ma petite attention. Au fait moi c'est Lounes", 0.04)
+            print(generate_stars(20))
+            animate_text("Saluuuuuuuuut !", 0.03)  
+            break
+        else:
+            animate_text("Eh, juste ‘oui’ ou ‘non’, sinon je vais bugger !", 0.03)
+            time.sleep(0.5)
+
+if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        clear_screen()
+        animate_text("Programme coupé ! Reviens quand tu veux.", 0.04)  
